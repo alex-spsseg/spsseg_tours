@@ -2,9 +2,11 @@
 
 South Puget Sound Salmon Enhancement Group: https://spsseg.org
 
+Questions or a tour missing? Contact gis@spsseg.org.
+
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated October 29, 2026 at 9:11 AM
+Updated October 29, 2026 at 10:59 AM
 
 ## WRIA 10: 2026whiteriverfloat
 
