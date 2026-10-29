@@ -4,7 +4,7 @@ South Puget Sound Salmon Enhancement Group: https://spsseg.org
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated October 28, 2026 at 5:30 PM
+Updated October 29, 2026 at 9:11 AM
 
 ## WRIA 10: 2026whiteriverfloat
 
@@ -111,7 +111,7 @@ All tours for this site: https://alex-spsseg.github.io/wria13_UpperDeschutes/tou
 
 * [Site Visit (225cfs)](https://alex-spsseg.github.io/wria13_UpperDeschutes/20260331/) (108 stops, visited 3/31/2026)
 
-## WRIA 13: Upper Des Chutes Spawn Er Survey
+## WRIA 13 - Upper Deschutes Tribs Spawner Survey
 
 All tours for this site: https://alex-spsseg.github.io/wria13_UpperDeschutesSpawnerSurvey/tours.html
 
