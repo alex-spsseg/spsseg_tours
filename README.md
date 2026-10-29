@@ -6,7 +6,7 @@ Questions or a tour missing? Contact gis@spsseg.org.
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated October 29, 2026 at 3:53 PM
+Updated October 29, 2026 at 4:16 PM
 
 ## WRIA 10: 2026whiteriverfloat
 
@@ -88,6 +88,14 @@ All tours for this site: https://alex-spsseg.github.io/wria13_middledeschutesflo
 ### Tours
 
 * [Middle Deschutes Float](https://alex-spsseg.github.io/wria13_middledeschutesfloat2026/20260428/) (498 stops, visited 4/28/2026)
+
+## WRIA 13: Monarch Park
+
+All tours for this site: https://alex-spsseg.github.io/wria13_MonarchPark/tours.html
+
+### Tours
+
+* [As-Built Site Visit](https://alex-spsseg.github.io/wria13_MonarchPark/20261029/) (10 stops, visited 10/29/2026)
 
 ## WRIA 13- Spurgeon Creek Crossing on Rainier Road (FPDSI: 342433)
 
