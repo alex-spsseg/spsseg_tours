@@ -6,7 +6,7 @@ Questions or a tour missing? Contact gis@spsseg.org.
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated October 29, 2026 at 11:29 AM
+Updated October 29, 2026 at 3:53 PM
 
 ## WRIA 10: 2026whiteriverfloat
 
@@ -119,7 +119,7 @@ All tours for this site: https://alex-spsseg.github.io/wria13_UpperDeschutesSpaw
 
 ### Tours
 
-* [Upper Deschutes Tribs Site Visit (44.3 cfs)](https://alex-spsseg.github.io/wria13_UpperDeschutesSpawnerSurvey/20261028/) (133 stops, visited 10/28/2026)
+* [Upper Deschutes Tribs Site Visit (44.3 cfs)](https://alex-spsseg.github.io/wria13_UpperDeschutesSpawnerSurvey/20261028/) (132 stops, visited 10/28/2026)
 
 ## WRIA 14: Kennedy Creek
 
