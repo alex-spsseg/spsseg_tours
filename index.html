@@ -7,60 +7,72 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { min-height: 100vh; color: #e8eef7; font-family: -apple-system, Segoe UI, Roboto, sans-serif;
-  padding: 32px 24px 60px; background: linear-gradient(180deg, #091124 0%, #0e1b33 100%); }
-header, main, footer { max-width: 1000px; margin: 0 auto; }
-header { margin-bottom: 18px; }
-h1 { font-size: 26px; font-weight: 700; color: #ffffff; }
-.tagline { margin-top: 6px; color: #9fb2cc; font-size: 14px; }
-#map { height: 420px; border-radius: 10px; border: 1px solid #1b3f95; margin-bottom: 16px; background: #132447; }
-.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
-#q { flex: 1 1 240px; max-width: 420px; padding: 10px 12px; border-radius: 8px; border: 1px solid #1b3f95;
-  background: #132447; color: #e8eef7; font-size: 14px; }
-.chip { padding: 7px 13px; border-radius: 999px; border: 1px solid #1b3f95; background: #132447; color: #cbd8ec;
-  font-size: 13px; cursor: pointer; }
+html, body { height: 100%; }
+body { color: #e8eef7; font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: #0e1b33;
+  display: flex; flex-direction: column; }
+.top { padding: 14px 20px 10px; background: #091124; border-bottom: 1px solid #1b3f95; flex: 0 0 auto; }
+h1 { font-size: 22px; font-weight: 700; color: #ffffff; }
+.tagline { margin-top: 3px; color: #9fb2cc; font-size: 13px; }
+.layout { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(340px, 42fr) minmax(0, 58fr); }
+#side { overflow-y: auto; padding: 0 18px 30px; background: linear-gradient(180deg, #0b1630 0%, #0e1b33 100%); }
+#mapwrap { position: relative; min-height: 0; }
+#map { position: absolute; inset: 0; background: #132447; }
+.maptools { position: absolute; left: 56px; top: 10px; z-index: 1000; background: rgba(9, 17, 36, 0.88); border: 1px solid #1b3f95;
+  border-radius: 8px; padding: 7px 11px; font-size: 12px; color: #e8eef7; display: flex; flex-direction: column; gap: 5px; }
+.maptools label { cursor: pointer; display: flex; gap: 6px; align-items: center; }
+.controls { position: sticky; top: 0; z-index: 5; background: #0b1630; padding: 12px 0 10px; display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; border-bottom: 1px solid #16294f; }
+#q { flex: 1 1 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #1b3f95; background: #132447; color: #e8eef7; font-size: 14px; }
+.chip { padding: 6px 12px; border-radius: 999px; border: 1px solid #1b3f95; background: #132447; color: #cbd8ec; font-size: 12px; cursor: pointer; }
 .chip:hover { border-color: #019fc4; }
 .chip.on { background: #1b3f95; color: #ffffff; border-color: #019fc4; }
-#recent { margin-top: 22px; }
-#recent h4, section.repo h4 { margin: 16px 0 10px; font-size: 12px; font-weight: 600; color: #9fb2cc;
-  text-transform: uppercase; letter-spacing: 0.06em; }
-details.group { margin-top: 26px; }
-details.group > summary { cursor: pointer; font-size: 20px; font-weight: 700; color: #ffffff; list-style: none; padding: 6px 0;
-  border-bottom: 1px solid #1b3f95; }
+#recent { margin-top: 14px; }
+#recent h4, section.repo h4 { margin: 14px 0 8px; font-size: 11px; font-weight: 600; color: #9fb2cc; text-transform: uppercase; letter-spacing: 0.06em; }
+details.group { margin-top: 20px; }
+details.group > summary { cursor: pointer; font-size: 18px; font-weight: 700; color: #ffffff; list-style: none; padding: 5px 0; border-bottom: 1px solid #1b3f95; }
 details.group > summary::-webkit-details-marker { display: none; }
 details.group > summary::before { content: "\25B8"; display: inline-block; width: 18px; color: #4cc3e0; }
 details.group[open] > summary::before { content: "\25BE"; }
-details.group > summary .n { font-size: 13px; font-weight: 400; color: #9fb2cc; margin-left: 8px; }
-section.repo { margin-top: 22px; }
-section.repo h2 { font-size: 17px; color: #ffffff; display: inline; }
-.repohead { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; }
-.repolink { font-size: 13px; margin-top: 3px; }
+details.group > summary .n { font-size: 12px; font-weight: 400; color: #9fb2cc; margin-left: 8px; }
+section.repo { margin-top: 18px; padding: 8px 10px 12px; margin-left: -10px; margin-right: -10px; border-radius: 10px; border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s; }
+section.repo.hl { background: rgba(1, 159, 196, 0.08); border-color: #019fc4; }
+section.repo.flash { animation: flash 1.8s ease-out; }
+@keyframes flash { 0% { background: rgba(245, 165, 36, 0.35); border-color: #f5a524; } 100% { background: transparent; border-color: transparent; } }
+section.repo h2 { font-size: 16px; color: #ffffff; }
+.repohead { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; }
+.repolink { font-size: 12px; margin-top: 3px; }
 a { color: #4cc3e0; }
-.showmap { font-size: 12px; color: #4cc3e0; background: none; border: 1px solid #1b3f95; border-radius: 6px;
-  padding: 3px 9px; cursor: pointer; }
+.showmap { font-size: 11px; color: #4cc3e0; background: none; border: 1px solid #1b3f95; border-radius: 6px; padding: 2px 8px; cursor: pointer; }
 .showmap:hover { border-color: #019fc4; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-.tour-card { display: block; text-decoration: none; color: inherit; background: #132447; border: 1px solid #1b3f95;
-  border-radius: 10px; padding: 14px 16px; transition: border-color 0.15s, transform 0.15s; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.tour-card { display: block; text-decoration: none; color: inherit; background: #132447; border: 1px solid #1b3f95; border-radius: 10px;
+  padding: 11px 13px; transition: border-color 0.15s, transform 0.15s; }
 .tour-card:hover { border-color: #019fc4; transform: translateY(-2px); }
-.tour-card h3 { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
-.sub { font-size: 13px; color: #cbd8ec; margin-bottom: 4px; }
+.tour-card h3 { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 3px; }
+.sub { font-size: 12px; color: #cbd8ec; margin-bottom: 3px; }
 .sub:empty { display: none; }
-.meta { font-size: 12px; color: #9fb2cc; }
-.from { font-size: 11px; color: #6f84a3; margin-bottom: 4px; }
+.meta { font-size: 11px; color: #9fb2cc; }
+.from { font-size: 10px; color: #6f84a3; margin-bottom: 3px; }
 #none { margin-top: 40px; color: #9fb2cc; font-size: 14px; text-align: center; display: none; }
-footer { margin-top: 40px; color: #6f84a3; font-size: 12px; }
-.leaflet-popup-content { font-family: -apple-system, Segoe UI, Roboto, sans-serif; font-size: 13px; }
-.leaflet-popup-content ul { margin: 6px 0 0 16px; }
-.leaflet-popup-content li { margin: 2px 0; }
+footer { margin-top: 34px; color: #6f84a3; font-size: 11px; }
+.leaflet-tooltip { font-family: -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12px; }
+@media (max-width: 820px) {
+  html, body { height: auto; }
+  .layout { display: flex; flex-direction: column; }
+  #mapwrap { order: -1; height: 42vh; position: sticky; top: 0; z-index: 20; }
+  #side { overflow: visible; }
+  .controls { top: 42vh; }
+}
 </style>
 </head>
 <body>
-<header>
+<div class="top">
 <h1>SPSSEG Virtual Site Tours</h1>
 <p class="tagline">360 degree site tours across all projects</p>
-</header>
-<div id="map"></div>
+</div>
+<div class="layout">
+<div id="side">
 <div class="controls">
 <input id="q" type="search" placeholder="Search tours" aria-label="Search tours">
 <button class="chip on" data-wria="all">All</button>
@@ -70,7 +82,6 @@ footer { margin-top: 40px; color: #6f84a3; font-size: 12px; }
 <button class="chip" data-wria="WRIA 13">WRIA 13</button>
 <button class="chip" data-wria="WRIA 14">WRIA 14</button>
 </div>
-<main>
 <div id="recent"><h4>Latest site visits</h4><div class="grid"><a class="tour-card" href="https://alex-spsseg.github.io/wria13_UpperDeschutesSpawnerSurvey/20261028/" data-text="upper deschutes tribs site visit (44.3 cfs) 10/28/2026 wria 13: upper des chutes spawn er survey"><div class="from">WRIA 13: Upper Des Chutes Spawn Er Survey</div><h3>10/28/2026</h3><div class="sub">Upper Deschutes Tribs Site Visit (44.3 cfs)</div><div class="meta">133 stops</div></a><a class="tour-card" href="https://alex-spsseg.github.io/wria11_MashelLOoutreach/20261023/" data-text="mashel rm 5.1 site visit (8.3 cfs) 10/23/2026 wria 11 - mashel river landowner outreach"><div class="from">WRIA 11 - Mashel River Landowner Outreach</div><h3>10/23/2026</h3><div class="sub">Mashel RM 5.1 Site Visit (8.3 cfs)</div><div class="meta">16 stops</div></a><a class="tour-card" href="https://alex-spsseg.github.io/wria14_skookumranch/20261021/" data-text="site visit 10/21/2026 wria 14 - skookum ranch"><div class="from">WRIA 14 - Skookum Ranch</div><h3>10/21/2026</h3><div class="sub">Site Visit</div><div class="meta">10 stops</div></a><a class="tour-card" href="https://alex-spsseg.github.io/wria14_SkookumValleyRiparianMonitoring/20261021/" data-text="site visit 10/21/2026 wria 14: skookum valley riparian monitoring"><div class="from">WRIA 14: Skookum Valley Riparian Monitoring</div><h3>10/21/2026</h3><div class="sub">Site Visit</div><div class="meta">11 stops</div></a><a class="tour-card" href="https://alex-spsseg.github.io/wria12_nearshoreassessment/20261020/" data-text="rustin way / pt. defiance site visits (+2ft tide) 10/20/2026 wria 12: near shore assessment"><div class="from">WRIA 12: Near Shore Assessment</div><h3>10/20/2026</h3><div class="sub">Rustin Way / Pt. Defiance Site Visits (+2ft tide)</div><div class="meta">20 stops</div></a></div></div>
 <div id="groups">
 <details class="group" open><summary>WRIA 10<span class="n">5 sites</span></summary>
@@ -212,51 +223,92 @@ footer { margin-top: 40px; color: #6f84a3; font-size: 12px; }
 </details>
 </div>
 <p id="none">No tours match that search.</p>
-</main>
-<footer>Updated October 28, 2026 at 5:03 PM</footer>
+<footer>Updated October 28, 2026 at 5:13 PM</footer>
+</div>
+<div id="mapwrap">
+<div id="map"></div>
+<div class="maptools">
+<label><input type="checkbox" id="tgExtents"> Show extents</label>
+<label><input type="checkbox" id="tgView"> Only list sites in map view</label>
+</div>
+</div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 var SITES = [{"id": "wria10_Greenwater", "title": "WRIA 10 - Greenwater Phase 4", "bounds": [47.121583333333334, -121.60268786324785, 47.132670375805006, -121.59072222222221], "items": [{"label": "10/2/2026: Invasive Weed Mapping (31cfs)", "url": "https://alex-spsseg.github.io/wria10_Greenwater/20261002/"}, {"label": "10/20/2025: Site Visit (52 cfs)", "url": "https://alex-spsseg.github.io/wria10_Greenwater/20251020/"}]}, {"id": "wria10_rushingwater", "title": "WRIA 10 - Rushingwater Creek Alluvial Fan Restoration (#24-1398)", "bounds": [46.90056032232437, -122.01628345812892, 46.90251716547518, -122.01145200249337], "items": [{"label": "9/23/2026: Rushingwater Site Visit", "url": "https://alex-spsseg.github.io/wria10_rushingwater/20260923/"}]}, {"id": "wria10_2026whiteriverfloat", "title": "WRIA 10: 2026whiteriverfloat", "bounds": [47.143134100364016, -121.8611234423676, 47.17346093363885, -121.67555114443955], "items": [{"label": "6/2/2026: Upper White River Float Survey", "url": "https://alex-spsseg.github.io/wria10_2026whiteriverfloat/20260602/"}]}, {"id": "wria10_clearcreek_groundwaterwells", "title": "WRIA 10: Clear Creek Groundwater Wells", "bounds": [47.21473665998473, -122.39129416995284, 47.23396648999829, -122.35949591002044], "items": [{"label": "9/24/2026: Clear Creek Groundwater Well Locations", "url": "https://alex-spsseg.github.io/wria10_clearcreek_groundwaterwells/20260924/"}]}, {"id": "wria10_SPCpreserve", "title": "WRIA 10: Spc Preserve", "bounds": [47.13259958791209, -122.12619593538301, 47.143100595632035, -122.10664658507864], "items": [{"label": "6/24/2026: 2026 Bathymetry Survey (54cfs)", "url": "https://alex-spsseg.github.io/wria10_SPCpreserve/20260624/"}]}, {"id": "wria11_MashelLOoutreach", "title": "WRIA 11 - Mashel River Landowner Outreach", "bounds": [46.85618150001918, -122.27464331249806, 46.85892777777777, -122.27144877496879], "items": [{"label": "10/23/2026: Mashel RM 5.1 Site Visit (8.3 cfs)", "url": "https://alex-spsseg.github.io/wria11_MashelLOoutreach/20261023/"}]}, {"id": "wria11_LowerOhop", "title": "WRIA11 - Lower Ohop", "bounds": [46.85067380689147, -122.36057190611147, 46.863123305555554, -122.34642375], "items": [{"label": "10/1/2026: BDA As-Built", "url": "https://alex-spsseg.github.io/wria11_LowerOhop/20261001/"}]}, {"id": "wria12_nearshoreassessment", "title": "WRIA 12: Near Shore Assessment", "bounds": [47.2766584145846, -122.52308222165935, 47.309587459229306, -122.46836352991927], "items": [{"label": "10/20/2026: Rustin Way / Pt. Defiance Site Visits (+2ft tide)", "url": "https://alex-spsseg.github.io/wria12_nearshoreassessment/20261020/"}]}, {"id": "wria13_DeschutesRiverRanch", "title": "WRIA 13 - Deschutes River Ranch", "bounds": [46.841078, -122.59937819444444, 46.84836505555556, -122.5833721111111], "items": [{"label": "10/14/2026: Deschutes River Ranch Site Visit (24.3cfs)", "url": "https://alex-spsseg.github.io/wria13_DeschutesRiverRanch/20261014/"}]}, {"id": "wria13_spurgeon342433", "title": "WRIA 13- Spurgeon Creek Crossing on Rainier Road (FPDSI: 342433)", "bounds": [46.95211397998587, -122.78177517006802, 46.95411608333333, -122.77888286111111], "items": [{"label": "9/10/2026: 342433 Site Visit", "url": "https://alex-spsseg.github.io/wria13_spurgeon342433/20260910/"}]}, {"id": "wria13_middledeschutesfloat2026", "title": "WRIA 13: Middledeschutesfloat2026", "bounds": [46.8409249754179, -122.81282837281947, 46.9275718673585, -122.58438129598188], "items": [{"label": "4/28/2026: Middle Deschutes Float", "url": "https://alex-spsseg.github.io/wria13_middledeschutesfloat2026/20260428/"}]}, {"id": "wria13_SpurgeonEquusBarrierCorrection", "title": "WRIA 13: Spurgeon Equus Barrier Correction", "bounds": [46.95530555555556, -122.79786083333333, 46.95730555555556, -122.79577727777777], "items": [{"label": "9/10/2026: As-Built Site Visit", "url": "https://alex-spsseg.github.io/wria13_SpurgeonEquusBarrierCorrection/20260910/"}]}, {"id": "wria13_UpperDeschutesSpawnerSurvey", "title": "WRIA 13: Upper Des Chutes Spawn Er Survey", "bounds": [46.786215029761905, -122.4689042412764, 46.79808601629952, -122.4364523008677], "items": [{"label": "10/28/2026: Upper Deschutes Tribs Site Visit (44.3 cfs)", "url": "https://alex-spsseg.github.io/wria13_UpperDeschutesSpawnerSurvey/20261028/"}]}, {"id": "wria13_UpperDeschutes", "title": "WRIA 13: Upper Deschutes Phase 1 Expansion", "bounds": [46.79688888999998, -122.44646927777778, 46.80135012999876, -122.42427777999983], "items": [{"label": "3/31/2026: Site Visit (225cfs)", "url": "https://alex-spsseg.github.io/wria13_UpperDeschutes/20260331/"}]}, {"id": "wria14_skookumranch", "title": "WRIA 14 - Skookum Ranch", "bounds": [47.11470355555556, -123.14204997222222, 47.119702833333335, -123.12657752777777], "items": [{"label": "10/21/2026: Site Visit", "url": "https://alex-spsseg.github.io/wria14_skookumranch/20261021/"}, {"label": "9/30/2026: Site Visit", "url": "https://alex-spsseg.github.io/wria14_skookumranch/20260930/"}]}, {"id": "wria14_kennedycreek", "title": "WRIA 14: Kennedy Creek", "bounds": [47.090460416666666, -123.09707999999999, 47.095971444444444, -123.08754094444444], "items": [{"label": "10/16/2026: Site Visit", "url": "https://alex-spsseg.github.io/wria14_kennedycreek/20261016/"}]}, {"id": "wria14_SkookumValleyRiparianMonitoring", "title": "WRIA 14: Skookum Valley Riparian Monitoring", "bounds": [47.100606444444445, -123.18593547222223, 47.12068083333333, -123.12717108333332], "items": [{"label": "10/21/2026: Site Visit", "url": "https://alex-spsseg.github.io/wria14_SkookumValleyRiparianMonitoring/20261021/"}]}, {"id": "wria14_westoaklandbay", "title": "WRIA 14: West Oakland Bay", "bounds": [47.209722222222226, -123.09204227777778, 47.2141245, -123.08689861111111], "items": [{"label": "9/30/2026: Site Visit (+5.8ft)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/20260930/"}, {"label": "9/9/2026: WOB Site Imagery (-0.7ft)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/20260909/"}, {"label": "8/28/2026: Site Visit (-0.5ft)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/wob_20280828_jpgs/"}, {"label": "10/30/2025: WOB Imagery", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/20251030/"}, {"label": "North Lobe (comparison)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124644_0001_d&view=compare"}, {"label": "Shelton Creek (comparison)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124449_0001_d&view=compare"}, {"label": "West Lobe - East View (comparison)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909123847_0001_d&view=compare"}, {"label": "Yacht Club (comparison)", "url": "https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124850_0001_d&view=compare"}]}];
-function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+var map = null, layers = {}, rectGroup = null, dotGroup = null, lastKey = null;
+var state = { q: '', wria: 'all', extents: false, inView: false };
 
-var map = null, layers = {};
+function area(b) { return (b[2] - b[0]) * (b[3] - b[1]); }
+function sectionOf(id) { return document.querySelector('section.repo[data-id="' + id + '"]'); }
+
+function flash(sec) {
+  if (!sec) return;
+  var g = sec.closest('details.group');
+  if (g) g.open = true;
+  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  sec.classList.remove('flash'); void sec.offsetWidth; sec.classList.add('flash');
+  setTimeout(function () { sec.classList.remove('flash'); }, 1900);
+}
+
+function setHighlight(id, on) {
+  var sec = sectionOf(id), l = layers[id];
+  if (sec) sec.classList.toggle('hl', on);
+  if (!l || !map) return;
+  l.dot.setStyle(on ? { fillColor: '#f5a524', radius: 12 } : { fillColor: '#019fc4', radius: 9 });
+  if (!state.extents && l.visible) {
+    if (on) rectGroup.addLayer(l.rect); else rectGroup.removeLayer(l.rect);
+  }
+}
+
 if (window.L) {
-  map = L.map('map', { scrollWheelZoom: false });
+  map = L.map('map', { scrollWheelZoom: true, zoomControl: true });
   var sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { maxZoom: 19, attribution: 'Imagery Esri, Maxar, Earthstar Geographics' });
-  var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' });
+  var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' });
   sat.addTo(map);
-  L.control.layers({ 'Satellite': sat, 'Street map': osm }, null, { collapsed: true }).addTo(map);
-  map.on('click', function () { map.scrollWheelZoom.enable(); });
-  map.on('mouseout', function () { map.scrollWheelZoom.disable(); });
+  L.control.layers({ 'Satellite': sat, 'Street map': osm }, null, { collapsed: true, position: 'topright' }).addTo(map);
+  rectGroup = L.featureGroup().addTo(map);
+  dotGroup = L.featureGroup().addTo(map);
   SITES.forEach(function (s) {
     if (!s.bounds) return;
-    var b = s.bounds, box = [[b[0], b[1]], [b[2], b[3]]];
-    var rect = L.rectangle(box, { color: '#4cc3e0', weight: 2, fillColor: '#4cc3e0', fillOpacity: 0.12 });
-    var dot = L.circleMarker([(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
-      { radius: 9, color: '#ffffff', weight: 2, fillColor: '#019fc4', fillOpacity: 1 });
-    var html = '<strong>' + esc(s.title) + '</strong><ul>' + s.items.map(function (it) {
-      return '<li><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.label) + '</a></li>';
-    }).join('') + '</ul>';
-    dot.bindPopup(html, { maxHeight: 260 });
-    var grp = L.featureGroup([rect, dot]).addTo(map);
-    layers[s.id] = { group: grp, dot: dot, box: box };
+    var b = s.bounds;
+    var rect = L.rectangle([[b[0], b[1]], [b[2], b[3]]], { color: '#4cc3e0', weight: 2, fillColor: '#4cc3e0', fillOpacity: 0.12, interactive: false });
+    var center = L.latLng((b[0] + b[2]) / 2, (b[1] + b[3]) / 2);
+    var dot = L.circleMarker(center, { radius: 9, color: '#ffffff', weight: 2, fillColor: '#019fc4', fillOpacity: 1 });
+    dot.bindTooltip(s.title, { direction: 'top' });
+    dot.on('click', function () { flash(sectionOf(s.id)); });
+    dot.on('mouseover', function () { setHighlight(s.id, true); });
+    dot.on('mouseout', function () { setHighlight(s.id, false); });
+    layers[s.id] = { dot: dot, rect: rect, box: [[b[0], b[1]], [b[2], b[3]]], center: center, area: area(b), visible: false };
   });
 }
 
-var state = { q: '', wria: 'all' };
+function refreshLayers(visibleIds) {
+  if (!map) return;
+  var key = visibleIds.join('|') + '#' + state.extents;
+  if (key === lastKey) return;
+  lastKey = key;
+  rectGroup.clearLayers(); dotGroup.clearLayers();
+  var ids = Object.keys(layers);
+  ids.forEach(function (id) { layers[id].visible = visibleIds.indexOf(id) !== -1; });
+  ids.filter(function (id) { return layers[id].visible; })
+     .sort(function (a, b) { return layers[b].area - layers[a].area; })
+     .forEach(function (id) { if (state.extents) rectGroup.addLayer(layers[id].rect); dotGroup.addLayer(layers[id].dot); });
+}
 
 function fitVisible() {
   if (!map) return;
   var all = [];
-  Object.keys(layers).forEach(function (id) { if (map.hasLayer(layers[id].group)) all = all.concat(layers[id].box); });
-  if (all.length) map.fitBounds(all, { padding: [30, 30], maxZoom: 16 });
+  Object.keys(layers).forEach(function (id) { if (layers[id].visible) all = all.concat(layers[id].box); });
+  if (all.length) map.fitBounds(all, { padding: [40, 40], maxZoom: 15 });
 }
 
-function apply() {
-  var v = state.q.trim().toLowerCase(), shown = 0;
+function apply(refit) {
+  var v = state.q.trim().toLowerCase(), shown = 0, mapIds = [];
+  var bounds = (map && state.inView) ? map.getBounds() : null;
   document.querySelectorAll('section.repo').forEach(function (sec) {
+    var id = sec.getAttribute('data-id');
     var wOk = state.wria === 'all' || sec.getAttribute('data-wria') === state.wria;
     var repoHit = v && sec.getAttribute('data-repo').indexOf(v) !== -1, any = 0;
     sec.querySelectorAll('.tour-card').forEach(function (c) {
@@ -264,10 +316,11 @@ function apply() {
       c.style.display = hit ? '' : 'none';
       if (hit) any++;
     });
-    sec.style.display = any ? '' : 'none';
-    shown += any;
-    var L1 = layers[sec.getAttribute('data-id')];
-    if (L1 && map) { if (any) L1.group.addTo(map); else map.removeLayer(L1.group); }
+    if (any) mapIds.push(id);
+    var inView = !bounds || (layers[id] && bounds.contains(layers[id].center));
+    var show = any && inView;
+    sec.style.display = show ? '' : 'none';
+    if (show) shown += any;
   });
   document.querySelectorAll('details.group').forEach(function (g) {
     var vis = Array.prototype.some.call(g.querySelectorAll('section.repo'), function (x) { return x.style.display !== 'none'; });
@@ -275,30 +328,44 @@ function apply() {
     if (v && vis) g.open = true;
   });
   var rec = document.getElementById('recent');
-  if (rec) rec.style.display = (!v && state.wria === 'all') ? '' : 'none';
+  if (rec) rec.style.display = (!v && state.wria === 'all' && !state.inView) ? '' : 'none';
   document.getElementById('none').style.display = shown ? 'none' : 'block';
-  fitVisible();
+  refreshLayers(mapIds);
+  if (refit) fitVisible();
 }
 
-document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; apply(); });
+document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; apply(true); });
 document.querySelectorAll('.chip').forEach(function (b) {
   b.addEventListener('click', function () {
     document.querySelectorAll('.chip').forEach(function (x) { x.classList.remove('on'); });
     b.classList.add('on');
     state.wria = b.getAttribute('data-wria');
-    apply();
+    apply(true);
   });
+});
+document.getElementById('tgExtents').addEventListener('change', function (e) { state.extents = e.target.checked; apply(false); });
+document.getElementById('tgView').addEventListener('change', function (e) { state.inView = e.target.checked; apply(false); });
+document.querySelectorAll('section.repo').forEach(function (sec) {
+  var id = sec.getAttribute('data-id');
+  sec.addEventListener('mouseenter', function () { setHighlight(id, true); });
+  sec.addEventListener('mouseleave', function () { setHighlight(id, false); });
 });
 document.querySelectorAll('.showmap').forEach(function (b) {
   b.addEventListener('click', function () {
     var l = layers[b.getAttribute('data-id')];
     if (!l || !map) return;
-    document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    map.fitBounds(l.box, { padding: [40, 40], maxZoom: 17 });
-    l.dot.openPopup();
+    map.fitBounds(l.box, { padding: [60, 60], maxZoom: 17 });
   });
 });
-if (map) { map.setView([47.2, -122.9], 9); fitVisible(); }
+if (map) {
+  map.on('moveend', function () { if (state.inView) apply(false); });
+  map.setView([47.2, -122.9], 9);
+  apply(false);
+  var startFit = function () { map.invalidateSize(); fitVisible(); };
+  window.addEventListener('load', function () { setTimeout(startFit, 50); });
+  setTimeout(startFit, 300);
+  if (window.ResizeObserver) new ResizeObserver(function () { map.invalidateSize(); }).observe(document.getElementById('mapwrap'));
+}
 </script>
 </body>
 </html>
