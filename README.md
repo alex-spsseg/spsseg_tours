@@ -6,7 +6,7 @@ Questions or a tour missing? Contact gis@spsseg.org.
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated October 29, 2026 at 4:16 PM
+Updated October 30, 2026 at 5:07 PM
 
 ## WRIA 10: 2026whiteriverfloat
 
