@@ -6,7 +6,7 @@ Questions or a tour missing? Contact gis@spsseg.org.
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated November 2, 2026 at 12:21 PM
+Updated November 6, 2026 at 1:09 PM
 
 ## WRIA 10: 2026whiteriverfloat
 
@@ -65,13 +65,13 @@ All tours for this site: https://alex-spsseg.github.io/wria11_MashelLOoutreach/t
 
 * [Mashel RM 5.1 Site Visit (8.3 cfs)](https://alex-spsseg.github.io/wria11_MashelLOoutreach/20261023/) (16 stops, visited 10/23/2026)
 
-## WRIA 12: Near Shore Assessment
+## WRIA 10/12 - Nearshore Habitat Assessment
 
 All tours for this site: https://alex-spsseg.github.io/wria12_nearshoreassessment/tours.html
 
 ### Tours
 
-* [Rustin Way / Pt. Defiance Site Visits (+2ft tide)](https://alex-spsseg.github.io/wria12_nearshoreassessment/20261020/) (20 stops, visited 10/20/2026)
+* [Ruston Way / Pt. Defiance Site Visits (+2ft tide)](https://alex-spsseg.github.io/wria12_nearshoreassessment/20261020/) (22 stops, visited 10/20/2026)
 
 ## WRIA 13 - Deschutes River Ranch
 
@@ -80,6 +80,14 @@ All tours for this site: https://alex-spsseg.github.io/wria13_DeschutesRiverRanc
 ### Tours
 
 * [Deschutes River Ranch Site Visit (24.3cfs)](https://alex-spsseg.github.io/wria13_DeschutesRiverRanch/20261014/) (20 stops, visited 10/14/2026)
+
+## WRIA 13 - Deschutes RM 34.5 Weyerhauser
+
+All tours for this site: https://alex-spsseg.github.io/wria13_DeschutesRM34/tours.html
+
+### Tours
+
+* [Site Visit (34cfs)](https://alex-spsseg.github.io/wria13_DeschutesRM34/20261104/) (5 stops, visited 11/4/2026)
 
 ## WRIA 13: Middledeschutesfloat2026
 
