@@ -6,7 +6,7 @@ Questions or a tour missing? Contact gis@spsseg.org.
 
 Browse this list as a web page: https://alex-spsseg.github.io/spsseg_tours/
 
-Updated November 6, 2026 at 5:10 PM
+Updated November 9, 2026 at 1:55 PM
 
 ## WRIA 10: 2026whiteriverfloat
 
@@ -168,6 +168,7 @@ All tours for this site: https://alex-spsseg.github.io/wria14_westoaklandbay/tou
 
 ### Tours
 
+* [Site Visit (+3.1ft tide)](https://alex-spsseg.github.io/wria14_westoaklandbay/20261105/) (8 stops, visited 11/5/2026)
 * [Site Visit (+5.8ft)](https://alex-spsseg.github.io/wria14_westoaklandbay/20260930/) (11 stops, visited 9/30/2026)
 * [WOB Site Imagery (-0.7ft)](https://alex-spsseg.github.io/wria14_westoaklandbay/20260909/) (13 stops, visited 9/9/2026)
 * [Site Visit (-0.5ft)](https://alex-spsseg.github.io/wria14_westoaklandbay/wob_20280828_jpgs/) (10 stops, visited 8/28/2026)
@@ -175,7 +176,7 @@ All tours for this site: https://alex-spsseg.github.io/wria14_westoaklandbay/tou
 
 ### Site Comparisons
 
-* [North Lobe](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124644_0001_d&view=compare) (3 dates)
-* [Shelton Creek](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124449_0001_d&view=compare) (3 dates)
-* [West Lobe - East View](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909123847_0001_d&view=compare) (3 dates)
-* [Yacht Club](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124850_0001_d&view=compare) (3 dates)
+* [North Lobe](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124644_0001_d&view=compare) (4 dates)
+* [Shelton Creek](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124449_0001_d&view=compare) (4 dates)
+* [West Lobe - East View](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909123847_0001_d&view=compare) (4 dates)
+* [Yacht Club](https://alex-spsseg.github.io/wria14_westoaklandbay/index.html?site=dji_20260909124850_0001_d&view=compare) (4 dates)
